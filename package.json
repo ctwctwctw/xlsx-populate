@@ -25,7 +25,8 @@
     "e2e-generate": "jasmine JASMINE_CONFIG_PATH=test/e2e-generate/jasmine.json",
     "e2e-parse": "jasmine JASMINE_CONFIG_PATH=test/e2e-parse/jasmine.json",
     "test:windows": "npm-run-all test e2e-parse e2e-generate",
-    "docs": "gulp docs"
+    "docs": "gulp docs",
+    "remove-doc-metadata": "node bin/remove-doc-metadata.js"
   },
   "author": "Dave T. Johnson <dave@dtjohnson.net>",
   "contributors": [
