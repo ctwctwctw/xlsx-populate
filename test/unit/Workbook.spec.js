@@ -443,6 +443,21 @@ describe("Workbook", () => {
                         expect(output).toBe("OUTPUT");
                     });
             });
+
+            itAsync("should exclude docMetadata folder when excludeDocMetadata is true", () => {
+                workbook._zip.files = {
+                    'docMetadata/': {},
+                    'docMetadata/LabelInfo.xml': {},
+                    'xl/workbook.xml': {}
+                };
+
+                return workbook.outputAsync({ excludeDocMetadata: true })
+                    .then(() => {
+                        expect(workbook._zip.remove).toHaveBeenCalledWith('docMetadata/');
+                        expect(workbook._zip.remove).toHaveBeenCalledWith('docMetadata/LabelInfo.xml');
+                        expect(workbook._zip.remove).not.toHaveBeenCalledWith('xl/workbook.xml');
+                    });
+            });
         });
 
         describe("sheet", () => {
